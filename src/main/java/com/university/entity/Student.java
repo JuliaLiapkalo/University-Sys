@@ -10,7 +10,7 @@ public class Student {
     public Student(){
 
     }
-    
+
     public Long getId() {
         return id;
     }
