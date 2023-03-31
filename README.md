@@ -1,0 +1,1 @@
+This crud program written using the spring framework will help you create a course with start and end dates, attach a professor to it, and add students who must attend the course. You can also manage this data - delete, view, create and update.
