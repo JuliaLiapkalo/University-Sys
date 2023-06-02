@@ -1,9 +1,6 @@
 package com.university.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Professor {
@@ -11,9 +8,13 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
     public Professor(){
 
+    }
+
+    public Professor(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public Professor(String name) {
@@ -35,6 +36,7 @@ public class Professor {
     public void setName(String name) {
         this.name = name;
     }
+
 
     @Override
     public String toString() {

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All university professors</title>
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">OUR UNIVERSITY</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/courses}">Courses<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/students}">Students<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/professors}">Professors<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
+<div class="row">
+  <div class="col-md-4">
+  </div>
+
+    <center><h2 th:text=" 'Students of ' + ${course.courseName}">Hi, User</h2></center>
+
+</div>
+
+<br>
+<div class="row">
+  <div class="offset-md-2 col-md-8">
+    <span th:if="${course.students.size() != 0}">
+    <table class="table table-bordered table-striped">
+
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Last name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="s: ${students}">
+      <td th:text="${s.id}" />
+      <td th:text="${s.name}" />
+      <td th:text="${s.lastName}" />
+      <td>
+        <a th:href="@{/students/edit/{id}(id=${s.id})}" class="btn btn-info">Edit</a>
+
+        <a th:href="@{/courses/delete-student/{id}(id=${s.id})}" class="btn btn-danger">Delete</a>
+      </td>
+      </tr>
+      </tbody>
+    </table>
+    <center><a th:href="@{/courses/set-student/{id} (id=${course.id})}" class="btn btn-info"> Add more students </a></center>
+</span>
+    <span th:if="${course.students.size() == 0}">
+      <center><h2 th:text=" 'No one student add to  ' + ${course.courseName} + ' course'"></h2th:text>User</h2></center>
+      <br>
+      <center><a th:href="@{/courses/set-student/{id} (id=${course.id})}" class="btn btn-info">Add student</a></center>
+
+    </span>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>

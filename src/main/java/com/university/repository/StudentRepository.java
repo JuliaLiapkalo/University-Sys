@@ -16,4 +16,11 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query(nativeQuery = true, value = "delete from course_students where students_id=?1")
     void deleteStudentByIdInCourse(Long studentId);
 
+    @Modifying
+    @Query(nativeQuery = true, value = "TRUNCATE TABLE student")
+    void deleteAllStudents();
+
+    @Modifying
+    @Query(nativeQuery = true, value = "DELETE ")
+    void deleteStudentFromCourse(Long courseId);
 }

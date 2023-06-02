@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update student</title>
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-4">
+        <a href="/students" class="btn btn-primary" role="button">Show all students</a>
+    </div>
+</div>
+
+<div align="center">
+    <h1>Edit student</h1>
+</div>
+
+<div class="row">
+    <div class="offset-md-3 col-md-5">
+
+
+        <form th:object="${student}"
+              th:action="@{/students/edit/{id}(id=${student.getId()})}"
+              th:method="patch">
+            <div class="mb-4">
+                <label for="firstName" class="form-label">Student name</label>
+                <input type="text" pattern="[a-zA-Z]*"  class="form-control" id="firstName" th:field="*{name}">
+            </div>
+            <div class="mb-4">
+                <label for="lastName" class="form-label">Student Last Name</label>
+                <input type="text" pattern="[a-zA-Z]*"  class="form-control" id="lastName" aria-labelledby="flag" th:field="*{lastName}">
+                <div id="flag" class="form-text">
+                    Student's first and second name should contain only letter
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update!</button>
+        </form>
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All university students</title>
+  <meta name="viewport" content="width-device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+        crossorigin="anonymous" />
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">OUR UNIVERSITY</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/courses}">Courses<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/students}">Students<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/professors}">Professors<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div align="center">
+  <h1>Edit  course</h1>
+</div>
+
+
+<div class="row">
+  <div class="offset-md-3 col-md-5">
+
+
+    <form th:object="${course}"
+          th:action="@{/courses/edit/{id}(id=${course.getId()})}"
+          th:method="patch">
+      <div class="mb-4">
+        <label for="courseName" class="form-label">Course name</label>
+        <input type="text" pattern="[a-zA-Z]*"  class="form-control" id="courseName" th:field="*{courseName}">
+      </div>
+      <div class="mb-4">
+        <label for="start" class="form-label">Date of end</label>
+        <input type="text"  class="form-control" id="start" th:field="*{startDate}">
+      </div>
+      <div class="mb-4">
+        <label for="end" class="form-label">Date of start</label>
+        <input type="text" class="form-control" id="end" th:field="*{endDate}" aria-labelledby="flag" >
+        <div id="flag" class="form-text">
+          Write date in format DD-MM-YYYY
+        </div>
+      </div>
+<!--      <div class="mb-4">-->
+<!--        <label for="professor" class="form-label">Professor</label>-->
+<!--        <input  class="form-control" id="professor" th:field="*{professor}">-->
+
+<!--      </div>-->
+      <button type="submit" class="btn btn-primary">Update!</button>
+    </form>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,6 +1,10 @@
 package com.university.entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,12 +13,14 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String courseName;
-    private String startDate; //LocalDate dos(dayOfStart) LocalDate.of(2000, Month.JULY, 6)
+    private String startDate;
     private String endDate;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Student> students;
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH})
-    private Professor professor;
+    private List<Student> students = new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Professor professor = new Professor();
 
     public Course(){
 
@@ -26,6 +32,15 @@ public class Course {
         this.students = students;
         this.professor = professor;
     }
+    public Course(Long id,String courseName, String startDate, String endDate, List<Student> students, Professor professor) {
+        this.id = id;
+        this.courseName = courseName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.students = students;
+        this.professor = professor;
+    }
+
 
     public Long getId() {
         return id;

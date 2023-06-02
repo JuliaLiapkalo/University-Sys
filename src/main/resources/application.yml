@@ -1,10 +1,15 @@
 spring:
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    cache: false
+
   jpa:
     database: POSTGRESQL
     properties.hibernate.temp.use_jdbc_metadata_defaults: false
     hibernate:
       ddl-auto: update
     properties:
+
   datasource:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/universitysystem
@@ -14,3 +19,6 @@ spring:
 
 server:
   port: 9999
+
+
+
